@@ -387,7 +387,7 @@ export class ClusterIcon extends OverlayViewSafe {
       left: coercePixels(spriteH),
       ...dimensions,
     });
-    console.log('boom');
+
     return `<img alt="${this.sums_.text}" aria-hidden="true" src="${this.style.url}" style="${cssText}"/>`;
   }
 
