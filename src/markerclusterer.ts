@@ -177,6 +177,12 @@ export interface MarkerClustererOptions {
    */
   clusterClass?: string;
   /**
+   * Callback function for custom HTML rendering for a cluster.
+   *
+   * @default `null`
+   */
+  clusterHtmlCallback?: any;
+  /**
    * An array of {@link ClusterIconStyle} elements defining the styles
    * of the cluster markers to be used. The element to be used to style a given cluster marker
    * is determined by the function defined by the `calculator` property.
@@ -319,6 +325,7 @@ export class MarkerClusterer extends OverlayViewSafe {
   private batchSizeIE_ =
     this.options.batchSizeIE || MarkerClusterer.BATCH_SIZE_IE;
   private clusterClass_ = this.options.clusterClass || "cluster";
+  private clusterHtmlCallback_ = this.options.clusterHtmlCallback || null;
 
   private prevZoom_: number;
   private timerRefStatic: number;
@@ -739,6 +746,24 @@ export class MarkerClusterer extends OverlayViewSafe {
    */
   setClusterClass(clusterClass: string): void {
     this.clusterClass_ = clusterClass;
+  }
+
+  /**
+   * Returns the value of the `clusterHtmlCallback` property.
+   *
+   * @return the value of the clusterHtmlCallback property.
+   */
+  getClusterHtmlCallback(): any {
+    return this.clusterHtmlCallback_;
+  }
+
+  /**
+   * Sets the value of the `clusterHtmlCallback` property.
+   *
+   *  @param clusterHtmlCallback The value of the clusterHtmlCallback property.
+   */
+  setClusterHtmlCallback(clusterHtmlCallback: any): void {
+    this.clusterHtmlCallback_ = clusterHtmlCallback;
   }
 
   /**

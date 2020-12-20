@@ -316,9 +316,14 @@ export class ClusterIcon extends OverlayViewSafe {
         this.getPosFromLatLng_(this.center_)
       );
 
-      this.div_.innerHTML =
-        (this.style.url ? this.getImageElementHtml() : "") +
-        this.getLabelDivHtml();
+      if(this.cluster_.getMarkerClusterer().getClusterHtmlCallback()){
+        this.div_.innerHTML = this.cluster_.getMarkerClusterer().getClusterHtmlCallback()(this.cluster_.getMarkers());
+      }
+      else{
+        this.div_.innerHTML =
+          (this.style.url ? this.getImageElementHtml() : "") +
+          this.getLabelDivHtml();
+      }
 
       if (typeof this.sums_.title === "undefined" || this.sums_.title === "") {
         this.div_.title = this.cluster_.getMarkerClusterer().getTitle();
